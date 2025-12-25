@@ -6,19 +6,37 @@ import { Briefcase, GraduationCap, Trophy, Code } from 'lucide-react';
 const experiences = [
   {
     type: 'work',
-    title: 'Software Development Intern',
-    company: 'Tech Innovations Inc.',
-    period: 'May 2024 - Present',
-    description: 'Building RAG-powered applications, working with embeddings and vector databases. Developing real-time features using WebRTC and Socket.io.',
-    highlights: ['RAG Systems', 'Vector Databases', 'Real-time Apps'],
+    title: 'Full Stack Developer Intern',
+    company: 'CodeFlare Labs',
+    period: 'Nov 2025 – Present',
+    description:
+      'Developed and deployed a secure admin dashboard with 6+ feature modules and n8n-based reminder automation, improving operational efficiency by over 40%. Built an LLM chatbot integrated with a vector database to improve enquiry tracking by 30%.',
+    highlights: ['MERN Stack', 'n8n Automation', 'LLM Chatbot', 'Vector DB'],
+  },
+  {
+    type: 'work',
+    title: 'SDE Co-Op Intern',
+    company: 'AlgoUniversity – AI Research Company',
+    period: 'Dec 2025 – Present',
+    description:
+      'Enhanced features using MERN and AWS; applied and optimized modules reducing delivery time by 30%, gaining hands-on experience with generative AI and scalable backend design.',
+    highlights: ['MERN & AWS', 'Performance Optimization', 'System Design'],
   },
   {
     type: 'education',
-    title: 'B.Tech Computer Science',
-    company: 'University of Technology',
-    period: '2021 - 2025',
-    description: 'CGPA: 8.59/10. Focused on Data Structures, Algorithms, Machine Learning, and Cloud Computing.',
-    highlights: ['8.59 CGPA', 'ML Specialization', 'Cloud Computing'],
+    title: 'Bachelor of Technology in Computer Science and Engineering',
+    company: 'Lovely Professional University, Punjab, India',
+    period: 'Aug. 2023 – Present',
+    description: 'CGPA: 8.59',
+    highlights: [],
+  },
+  {
+    type: 'education',
+    title: 'Intermediate',
+    company: 'Sonarpur Vidyapith, West Bengal, India',
+    period: 'May 2021 – May 2023',
+    description: 'Percentage: 90',
+    highlights: [],
   },
 ];
 
@@ -41,7 +59,7 @@ const achievements = [
   {
     icon: GraduationCap,
     title: 'Multiple Certifications',
-    description: 'AWS, Docker, and ML certifications',
+    description: 'Cloud, DSA, and ML certifications',
   },
 ];
 

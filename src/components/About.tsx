@@ -1,35 +1,47 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code2, Lightbulb, Rocket, Heart } from 'lucide-react';
+import { Code2, Lightbulb, Rocket, Heart, Award } from 'lucide-react';
+const aboutIntro = `
+I'm Niladri — a software engineer who builds systems that think, talk, and work in real time.
+
+Right now, I'm in my final year of Computer Science at Lovely Professional University with a CGPA of 8.59, and actively shaping ideas into deployed products through my internships at CodeFlare Labs and AlgoUniversity. I've solved 500+ DSA problems, explored Generative AI (RAG, vector embeddings, Pinecone, LangChain), and engineered real-time experiences using WebRTC and Socket.io.
+
+My work spans AI-driven platforms like BodyX, where I combined computer vision (MediaPipe, OpenCV) with LLM feedback, and integrated premium monetization through Razorpay and Razorpay-like payment flows. I deploy full-stack apps on AWS and GCP using Docker, Kubernetes, and CI/CD pipelines (GitHub Actions).
+
+I care deeply about clean, maintainable code, thoughtful architecture, and building scalable systems that solve real problems — with a constant appetite for learning what's next in tech.
+`;
 
 const highlights = [
   {
     icon: Code2,
-    title: 'Clean Code Advocate',
-    description: 'I believe in writing code that tells a story. Readable, maintainable, and elegant.',
+    title: 'Crafts Clean Code',
+    description: 'I write code like prose — clear, structured, and built to be understood by humans first.',
   },
   {
     icon: Lightbulb,
-    title: 'Problem Solver',
-    description: '400+ LeetCode problems solved. I love breaking down complex problems into simple solutions.',
+    title: 'DSA Problem Crusher',
+    description: '500+ problems solved across platforms. 400+ on LeetCode with strong optimization focus.',
   },
   {
     icon: Rocket,
-    title: 'Builder at Heart',
-    description: 'From RAG systems to real-time apps, I love turning ideas into deployed products.',
+    title: 'Real-Time Systems Engineer',
+    description: 'Built live platforms with WebRTC, Socket.io, and AI feedback loops. Deploy-ready always.',
   },
   {
-    icon: Heart,
-    title: 'Continuous Learner',
-    description: 'Technology evolves fast. So do I. Always exploring new tools and frameworks.',
+    icon: Award,
+    title: 'Graph Challenge Winner',
+    description: 'Secured 3rd place in AlgoUniversity’s competitive graph problem-solving challenge.',
   },
+  {
+    icon: Award,
+    title: 'AI Builder',
+    description: 'Created RAG systems, posture-aware fitness feedback, resume scoring, and vector DB workflows.',
+  }
 ];
-
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-
   return (
     <section id="about" className="section-padding bg-secondary/30" ref={ref}>
       <div className="container-custom">
@@ -42,7 +54,6 @@ export default function About() {
           <p className="text-primary font-medium mb-2">Get to know me</p>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">About Me</h2>
         </motion.div>
-
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -50,25 +61,11 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-6"
           >
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Hey there! I'm a passionate software developer currently in my final year of 
-              Computer Science. My journey started with curiosity about how things work, 
-              and it's grown into a deep love for building digital solutions that make a difference.
-            </p>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              During my internship, I dove deep into <span className="text-primary">RAG systems and embeddings</span>, 
-              building intelligent applications that understand context. I've worked on 
-              <span className="text-primary"> real-time applications</span> using WebRTC and Socket.io, 
-              and deployed full-stack projects on AWS with Docker and Kubernetes.
-            </p>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              When I'm not coding, you'll find me exploring new technologies, contributing 
-              to open-source, or optimizing my development workflow. I believe in the power 
-              of clean code and thoughtful design.
-            </p>
-
+            {aboutIntro.trim().split('\n\n').map((para, i) => (
+              <p key={i} className="text-lg text-muted-foreground leading-relaxed">
+                {para}
+              </p>
+            ))}
             <div className="flex flex-wrap gap-3 pt-4">
               {['MERN Stack', 'AWS', 'Docker', 'AI/ML', 'Real-time Systems'].map((skill) => (
                 <span
@@ -80,7 +77,6 @@ export default function About() {
               ))}
             </div>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}

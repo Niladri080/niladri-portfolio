@@ -3,29 +3,45 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const technologies = [
+  // Languages
+  { name: 'C++', icon: '💠', category: 'Languages' },
+  { name: 'C', icon: '🔹', category: 'Languages' },
+  { name: 'Python', icon: '🐍', category: ['Languages', 'Backend'] },
+  { name: 'JavaScript', icon: '📜', category: 'Languages' },
+  { name: 'PHP', icon: '🐘', category: 'Languages' },
   { name: 'React', icon: '⚛️', category: 'Frontend' },
-  { name: 'Node.js', icon: '🟢', category: 'Backend' },
-  { name: 'MongoDB', icon: '🍃', category: 'Database' },
-  { name: 'Express', icon: '🚂', category: 'Backend' },
-  { name: 'TypeScript', icon: '📘', category: 'Language' },
-  { name: 'Python', icon: '🐍', category: 'Language' },
+  { name: 'Next.js', icon: '➡️', category: 'Frontend' },
+  { name: 'Tailwind CSS', icon: '🌬️', category: 'Frontend' },
+  { name: 'Bootstrap', icon: '🧩', category: 'Frontend' },
+  { name: 'GSAP', icon: '✨', category: 'Frontend' },
+  { name: 'Express.js', icon: '🚂', category: 'Backend' },
+  { name: 'MySQL', icon: '🐬', category: 'Databases' },
+  { name: 'MongoDB', icon: '🍃', category: 'Databases' },
+  { name: 'Redis', icon: '🔴', category: 'Databases' },
+  { name: 'Pinecone', icon: '🌲', category: 'Generative AI' },
+  { name: 'RAG', icon: '🧠', category: 'Generative AI' },
+  { name: 'LangChain', icon: '🔗', category: 'Generative AI' },
   { name: 'AWS', icon: '☁️', category: 'Cloud' },
-  { name: 'Docker', icon: '🐳', category: 'DevOps' },
-  { name: 'Kubernetes', icon: '⎈', category: 'DevOps' },
-  { name: 'PostgreSQL', icon: '🐘', category: 'Database' },
-  { name: 'Redis', icon: '🔴', category: 'Database' },
-  { name: 'Pinecone', icon: '🌲', category: 'Vector DB' },
-  { name: 'Socket.io', icon: '🔌', category: 'Real-time' },
-  { name: 'WebRTC', icon: '📹', category: 'Real-time' },
-  { name: 'GraphQL', icon: '◼️', category: 'API' },
-  { name: 'TensorFlow', icon: '🧠', category: 'AI/ML' },
-  { name: 'LangChain', icon: '🔗', category: 'AI/ML' },
+  { name: 'GCP', icon: '☁️', category: 'Cloud' },
+  { name: 'Railway', icon: '🚆', category: 'Cloud' },
+  { name: 'Vercel', icon: '⚡', category: 'Cloud' },
   { name: 'Git', icon: '🔀', category: 'Tools' },
-  { name: 'MySQL', icon: '🗄️', category: 'Database' },
-  { name: 'Tailwind', icon: '🎨', category: 'Frontend' },
+  { name: 'GitHub', icon: '🐙', category: 'Tools' },
+  { name: 'Postman', icon: '📬', category: 'Tools' },
+  { name: 'Figma', icon: '🎛️', category: 'Tools' },
 ];
 
-const categories = ['All', 'Frontend', 'Backend', 'Database', 'DevOps', 'Cloud', 'AI/ML', 'Real-time'];
+const categories = [
+  'All',
+  'Languages',
+  'Frontend',
+  'Backend',
+  'Databases',
+  'Generative AI',
+  'Cloud',
+  'Tools',
+  'Foundations',
+];
 
 export default function TechStack() {
   const ref = useRef(null);
@@ -48,23 +64,50 @@ export default function TechStack() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+          className="space-y-8"
         >
-          {technologies.map((tech, index) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.3 + index * 0.03 }}
-              className="glass-card p-4 text-center hover-lift group cursor-default"
-            >
-              <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {tech.icon}
-              </div>
-              <h3 className="font-medium text-foreground mb-1">{tech.name}</h3>
-              <p className="text-xs text-muted-foreground">{tech.category}</p>
-            </motion.div>
-          ))}
+          {/* Preferred order for categories to display (only show those present) */}
+          {([
+            'Languages',
+            'Frontend',
+            'Backend',
+            'Databases',
+            'Generative AI',
+            'Cloud',
+            'Tools',
+            'Foundations',
+          ] as const)
+            .filter((cat) => technologies.some((t) => Array.isArray(t.category) ? t.category.includes(cat) : t.category === cat))
+            .map((cat, catIndex) => (
+              <motion.div
+                key={cat}
+                initial={{ opacity: 0, y: 8 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.25 + catIndex * 0.06 }}
+                className="flex flex-col items-center"
+              >
+                <h3 className="text-2xl font-semibold mb-4 text-foreground text-center">{cat}</h3>
+
+                <div className="flex flex-wrap justify-center gap-4 mx-auto max-w-5xl">
+                  {technologies
+                    .filter((t) => Array.isArray(t.category) ? t.category.includes(cat) : t.category === cat)
+                    .map((tech, index) => (
+                      <motion.div
+                        key={tech.name}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.35, delay: 0.15 + index * 0.02 }}
+                        className="glass-card p-3 text-center hover-lift group cursor-default w-28 sm:w-32 md:w-36"
+                      >
+                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                          {tech.icon}
+                        </div>
+                        <p className="text-sm font-medium text-foreground">{tech.name}</p>
+                      </motion.div>
+                    ))}
+                </div>
+              </motion.div>
+            ))}
         </motion.div>
       </div>
     </section>

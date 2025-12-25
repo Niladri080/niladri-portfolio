@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Mail, Github, Linkedin, Twitter, Send, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, Github, Linkedin, Send, MapPin, ArrowUpRight } from 'lucide-react';
 import { toast } from 'sonner';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub', username: '@alexchen' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', username: 'alex-chen' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter', username: '@alexchendev' },
+  { icon: Github, href: 'https://github.com/Niladri080', label: 'GitHub', username: '@Niladri080' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/niladri-mandal-737b53294/', label: 'LinkedIn', username: 'Niladri Mandal' },
 ];
 
 export default function Contact() {
@@ -51,7 +50,7 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <a
-                  href="mailto:alex.chen@example.com"
+                  href="mailto:nilmandal098@gmail.com"
                   className="flex items-center gap-4 group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -60,7 +59,22 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-muted-foreground">Email</p>
                     <p className="text-foreground font-medium group-hover:text-primary transition-colors">
-                      alex.chen@example.com
+                      nilmandal098@gmail.com
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="tel:+917439301473"
+                  className="flex items-center gap-4 group"
+                >
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Phone size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">
+                      +91-7439301473
                     </p>
                   </div>
                 </a>
@@ -71,7 +85,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="text-foreground font-medium">San Francisco, CA</p>
+                    <p className="text-foreground font-medium">Phagwara, Punjab, India</p>
                   </div>
                 </div>
               </div>

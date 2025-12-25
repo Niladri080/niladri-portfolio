@@ -1,15 +1,75 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import Scene3D from './Scene3D';
+import Scene3D from './Scene3D.tsx';
+import LightPillar from './Hero-background';
+import { useEffect, useState } from 'react';
 
 export default function Hero() {
+  const [topColor, setTopColor] = useState('#5227FF');
+  const [bottomColor, setBottomColor] = useState('#FF9FFC');
+
+  useEffect(() => {
+    // derive colors from CSS tokens for better theme consistency
+    const root = getComputedStyle(document.documentElement);
+    const primary = root.getPropertyValue('--primary').trim(); // e.g. "270 70% 60%"
+    const accent = root.getPropertyValue('--accent').trim();
+
+    const parseHslTokens = (token: string) => {
+      if (!token) return null;
+      const parts = token.split(/\s+/).map((p) => p.replace('%', ''));
+      const h = parseFloat(parts[0]) || 270;
+      const s = parseFloat(parts[1]) || 70;
+      const l = parseFloat(parts[2]) || 60;
+      return { h, s, l };
+    };
+
+    const hslToHex = (h: number, s: number, l: number) => {
+      s /= 100; l /= 100;
+      const k = (n: number) => (n + h / 30) % 12;
+      const a = s * Math.min(l, 1 - l);
+      const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+      const r = Math.round(255 * f(0));
+      const g = Math.round(255 * f(8));
+      const b = Math.round(255 * f(4));
+      return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+    };
+
+    const p = parseHslTokens(primary);
+    const a = parseHslTokens(accent);
+
+    if (p) setTopColor(hslToHex(p.h, p.s, Math.min(55, p.l)));
+    if (a) setBottomColor(hslToHex(a.h, a.s, Math.max(45, a.l - 10)));
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <Scene3D />
+      {/* Background pillar (behind all content) */}
+      <div className="absolute inset-0 z-0">
+        <LightPillar
+          topColor={topColor}
+          bottomColor={bottomColor}
+          intensity={0.28}
+          rotationSpeed={0.12}
+          glowAmount={0.0018}
+          pillarWidth={2.4}
+          pillarHeight={0.32}
+          noiseIntensity={0.35}
+          pillarRotation={0}
+          interactive={false}
+          mixBlendMode="normal"
+          className="w-full h-full opacity-60"
+        />
+        {/* Muting overlay to ensure content readability */}
+        <div className="absolute inset-0 z-[5] bg-background/70 backdrop-blur-sm pointer-events-none" />
+      </div>
+
+      <div className="absolute inset-0 z-10">
+        <Scene3D />
+      </div>
       
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/15 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/14 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
       
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
@@ -35,8 +95,8 @@ export default function Hero() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
             >
-              <span className="text-foreground">Alex </span>
-              <span className="text-primary">Chen</span>
+              <span className="text-foreground">Niladri </span>
+              <span className="text-primary">Mandal</span>
             </motion.h1>
             
             <motion.p
@@ -54,8 +114,7 @@ export default function Hero() {
               transition={{ delay: 0.7, duration: 0.8 }}
               className="text-lg text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0 mb-10"
             >
-              I craft beautiful digital experiences with code. Passionate about building 
-              real-time applications, AI-powered solutions, and everything in between.
+              I build intelligent, real-time systems that solve complex problems with clean code and scalable design
             </motion.p>
             
             <motion.div
@@ -87,9 +146,9 @@ export default function Hero() {
               className="flex items-center justify-center lg:justify-start gap-6"
             >
               {[
-                { icon: Github, href: 'https://github.com', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-                { icon: Mail, href: 'mailto:alex@example.com', label: 'Email' },
+                { icon: Github, href: 'https://github.com/Niladri080', label: 'GitHub' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/niladri-mandal-737b53294/', label: 'LinkedIn' },
+                { icon: Mail, href: 'mailto:nilmandal098@example.com', label: 'Email' },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -108,26 +167,24 @@ export default function Hero() {
 
           {/* Right - Developer Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
+            transition={{ delay: 0.4, duration: 0.6, ease: 'easeOut' }}
             className="flex-shrink-0"
           >
             <div className="relative">
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-primary/30 rounded-full blur-3xl scale-75" />
-              
-              {/* Image container with border */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/30 shadow-glow">
+              {/* Circular portrait — clean, subtle border and soft shadow */}
+              <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/10 bg-card/10 shadow-glow transition-transform duration-300 hover:scale-105">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                  alt="Alex Chen - Software Developer"
+                  src="WhatsApp Image 2025-11-22 at 1.33.21 AM.jpeg"
+                  alt="Niladri Mandal - Software Developer"
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/8 to-transparent pointer-events-none" />
               </div>
-              
-              {/* Decorative ring */}
-              <div className="absolute inset-0 rounded-full border-2 border-primary/20 scale-110 animate-pulse" />
+
+              {/* subtle ring */}
+              <div className="absolute -inset-0.5 rounded-full border border-primary/8 opacity-80" />
             </div>
           </motion.div>
         </div>
