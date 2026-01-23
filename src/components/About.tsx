@@ -96,9 +96,9 @@ export default function About() {
                 </div>
                 <h3 className="text-foreground font-semibold mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">{item.description}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -51,21 +51,16 @@ export default function TechStack() {
     <section id="skills" className="section-padding bg-secondary/30" ref={ref}>
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-16"
         >
           <p className="text-primary font-medium mb-2">Technologies I work with</p>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">Tech Stack</h2>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-8"
-        >
+        <div className="space-y-8">
           {/* Preferred order for categories to display (only show those present) */}
           {([
             'Languages',
@@ -79,11 +74,8 @@ export default function TechStack() {
           ] as const)
             .filter((cat) => technologies.some((t) => Array.isArray(t.category) ? t.category.includes(cat) : t.category === cat))
             .map((cat, catIndex) => (
-              <motion.div
+              <div
                 key={cat}
-                initial={{ opacity: 0, y: 8 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.25 + catIndex * 0.06 }}
                 className="flex flex-col items-center"
               >
                 <h3 className="text-2xl font-semibold mb-4 text-foreground text-center">{cat}</h3>
@@ -92,23 +84,20 @@ export default function TechStack() {
                   {technologies
                     .filter((t) => Array.isArray(t.category) ? t.category.includes(cat) : t.category === cat)
                     .map((tech, index) => (
-                      <motion.div
+                      <div
                         key={tech.name}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.35, delay: 0.15 + index * 0.02 }}
                         className="glass-card p-3 text-center hover-lift group cursor-default w-28 sm:w-32 md:w-36"
                       >
-                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
                           {tech.icon}
                         </div>
                         <p className="text-sm font-medium text-foreground">{tech.name}</p>
-                      </motion.div>
+                      </div>
                     ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,75 +1,15 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import Scene3D from './Scene3D.tsx';
-import LightPillar from './Hero-background';
-import { useEffect, useState } from 'react';
 
 export default function Hero() {
-  const [topColor, setTopColor] = useState('#5227FF');
-  const [bottomColor, setBottomColor] = useState('#FF9FFC');
-
-  useEffect(() => {
-    // derive colors from CSS tokens for better theme consistency
-    const root = getComputedStyle(document.documentElement);
-    const primary = root.getPropertyValue('--primary').trim(); // e.g. "270 70% 60%"
-    const accent = root.getPropertyValue('--accent').trim();
-
-    const parseHslTokens = (token: string) => {
-      if (!token) return null;
-      const parts = token.split(/\s+/).map((p) => p.replace('%', ''));
-      const h = parseFloat(parts[0]) || 270;
-      const s = parseFloat(parts[1]) || 70;
-      const l = parseFloat(parts[2]) || 60;
-      return { h, s, l };
-    };
-
-    const hslToHex = (h: number, s: number, l: number) => {
-      s /= 100; l /= 100;
-      const k = (n: number) => (n + h / 30) % 12;
-      const a = s * Math.min(l, 1 - l);
-      const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-      const r = Math.round(255 * f(0));
-      const g = Math.round(255 * f(8));
-      const b = Math.round(255 * f(4));
-      return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
-    };
-
-    const p = parseHslTokens(primary);
-    const a = parseHslTokens(accent);
-
-    if (p) setTopColor(hslToHex(p.h, p.s, Math.min(55, p.l)));
-    if (a) setBottomColor(hslToHex(a.h, a.s, Math.max(45, a.l - 10)));
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background pillar (behind all content) */}
-      <div className="absolute inset-0 z-0">
-        <LightPillar
-          topColor={topColor}
-          bottomColor={bottomColor}
-          intensity={0.28}
-          rotationSpeed={0.12}
-          glowAmount={0.0018}
-          pillarWidth={2.4}
-          pillarHeight={0.32}
-          noiseIntensity={0.35}
-          pillarRotation={0}
-          interactive={false}
-          mixBlendMode="normal"
-          className="w-full h-full opacity-60"
-        />
-        {/* Muting overlay to ensure content readability */}
-        <div className="absolute inset-0 z-[5] bg-background/70 backdrop-blur-sm pointer-events-none" />
-      </div>
-
-      <div className="absolute inset-0 z-10">
-        <Scene3D />
-      </div>
+      {/* Lightweight gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
       
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/14 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+      {/* Simple gradient orbs - no heavy blur */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full opacity-60" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/8 rounded-full opacity-50" />
       
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">

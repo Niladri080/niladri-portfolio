@@ -10,7 +10,6 @@ const projects = [
     tags: ['RAG', 'Pinecone', 'LangChain', 'React', 'Node.js'],
     github: 'https://github.com',
     live: 'https://example.com',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
     featured: true,
   },
   {
@@ -19,7 +18,6 @@ const projects = [
     tags: ['WebRTC', 'Socket.io', 'MediaPipe', 'React', 'Express'],
     github: 'https://github.com',
     live: 'https://example.com',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop',
     featured: true,
   },
   {
@@ -28,7 +26,6 @@ const projects = [
     tags: ['AWS', 'Docker', 'Kubernetes', 'MERN', 'Stripe'],
     github: 'https://github.com',
     live: 'https://example.com',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
     featured: true,
   },
   {
@@ -36,7 +33,6 @@ const projects = [
     description: 'Monitoring and analytics dashboard for cloud infrastructure. Real-time metrics, alerting, and beautiful data visualizations.',
     tags: ['React', 'D3.js', 'Node.js', 'PostgreSQL', 'Redis'],
     github: 'https://github.com',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
     featured: false,
   },
   {
@@ -44,7 +40,6 @@ const projects = [
     description: 'Production-ready API for serving machine learning models with auto-scaling, request batching, and model versioning.',
     tags: ['Python', 'FastAPI', 'Docker', 'TensorFlow', 'Redis'],
     github: 'https://github.com',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop',
     featured: false,
   },
   {
@@ -52,7 +47,6 @@ const projects = [
     description: 'Analytics platform for tracking social media metrics across platforms with sentiment analysis and trend detection.',
     tags: ['React', 'Node.js', 'MongoDB', 'NLP', 'Chart.js'],
     github: 'https://github.com',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
     featured: false,
   },
 ];
@@ -85,13 +79,9 @@ export default function Projects() {
               className="glass-card overflow-hidden hover-lift group"
             >
               <div className="flex flex-col lg:flex-row">
-                {/* Project Image */}
-                <div className="lg:w-2/5 h-48 lg:h-auto overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                {/* Project Visual - gradient placeholder */}
+                <div className="lg:w-2/5 h-48 lg:h-auto overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-primary/5 flex items-center justify-center">
+                  <div className="text-6xl opacity-20">💡</div>
                 </div>
                 
                 {/* Project Content */}
@@ -140,32 +130,21 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Other Projects Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         >
           {projects.filter(p => !p.featured).map((project, index) => (
-            <motion.div
+            <div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
               className="glass-card overflow-hidden hover-lift group"
             >
-              {/* Project Image */}
-              <div className="h-40 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+              {/* Project Visual - gradient placeholder */}
+              <div className="h-40 overflow-hidden bg-gradient-to-br from-primary/15 via-accent/10 to-secondary/20 flex items-center justify-center">
+                <div className="text-5xl opacity-20">🚀</div>
               </div>
               
               <div className="p-6">
@@ -200,9 +179,9 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

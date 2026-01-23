@@ -24,9 +24,9 @@ export default function Contact() {
     <section id="contact" className="section-padding bg-secondary/30" ref={ref}>
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-16"
         >
           <p className="text-primary font-medium mb-2">Let's connect</p>
@@ -39,12 +39,7 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <div className="glass-card p-8">
               <h3 className="text-xl font-semibold text-foreground mb-6">Contact Information</h3>
               
@@ -114,14 +109,10 @@ export default function Contact() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+          <div>
             <form onSubmit={handleSubmit} className="glass-card p-8">
               <h3 className="text-xl font-semibold text-foreground mb-6">Send a Message</h3>
               
@@ -188,7 +179,7 @@ export default function Contact() {
                 </button>
               </div>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
