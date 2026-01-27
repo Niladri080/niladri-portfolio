@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import React from 'react';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2, Lightbulb, Rocket, Heart, Award } from 'lucide-react';
 const aboutIntro = `
@@ -21,7 +21,7 @@ const highlights = [
   {
     icon: Lightbulb,
     title: 'DSA Problem Crusher',
-    description: '500+ problems solved across platforms. 400+ on LeetCode with strong optimization focus.',
+    description: '600+ problems solved across platforms. 450+ on LeetCode with strong optimization focus.',
   },
   {
     icon: Rocket,
@@ -96,9 +96,9 @@ export default function About() {
                 </div>
                 <h3 className="text-foreground font-semibold mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

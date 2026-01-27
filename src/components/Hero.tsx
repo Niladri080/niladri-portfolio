@@ -4,16 +4,12 @@ import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Lightweight gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
-      
-      {/* Simple gradient orbs - no heavy blur */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full opacity-60" />
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full opacity-60" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/8 rounded-full opacity-50" />
       
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
-          {/* Left - Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,7 +41,7 @@ export default function Hero() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-xl md:text-2xl text-muted-foreground mb-4"
             >
-              Software Developer / Full Stack Engineer
+              Software Engineer / Full Stack Developer
             </motion.p>
             
             <motion.p
@@ -78,7 +74,6 @@ export default function Hero() {
                 Get In Touch
               </a>
             </motion.div>
-            
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -104,8 +99,6 @@ export default function Hero() {
               ))}
             </motion.div>
           </motion.div>
-
-          {/* Right - Developer Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -113,7 +106,6 @@ export default function Hero() {
             className="flex-shrink-0"
           >
             <div className="relative">
-              {/* Circular portrait — clean, subtle border and soft shadow */}
               <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/10 bg-card/10 shadow-glow transition-transform duration-300 hover:scale-105">
                 <img
                   src="WhatsApp Image 2025-11-22 at 1.33.21 AM.jpeg"
@@ -122,13 +114,10 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/8 to-transparent pointer-events-none" />
               </div>
-
-              {/* subtle ring */}
               <div className="absolute -inset-0.5 rounded-full border border-primary/8 opacity-80" />
             </div>
           </motion.div>
         </div>
-        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

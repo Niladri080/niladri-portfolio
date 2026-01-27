@@ -2,55 +2,83 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink, Github, Sparkles } from 'lucide-react';
-
 const projects = [
   {
-    title: 'AI Document Assistant',
-    description: 'A RAG-powered document Q&A system using embeddings and vector databases. Built with LangChain, Pinecone, and React for seamless document interaction.',
-    tags: ['RAG', 'Pinecone', 'LangChain', 'React', 'Node.js'],
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'Gift of Memories',
+    description: 'A comprehensive wedding and prewedding booking platform for memories and products, featuring admin-controlled client management, n8n-based service reminders, and an intelligent RAG-powered chatbot.',
+    tags: ['MERN', 'n8n', 'Gen AI', 'Compute Engine', 'Framer Motion'],
+    github: 'https://github.com/codeflare-labs/gift-of-memories',
+    live: 'http://69.62.85.224',
+    image: '/gift-of-memories.png',
     featured: true,
   },
   {
-    title: 'Real-time Collaboration Hub',
-    description: 'A WebRTC-powered video conferencing app with real-time document editing, screen sharing, and AI transcription using MediaPipe.',
-    tags: ['WebRTC', 'Socket.io', 'MediaPipe', 'React', 'Express'],
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'NexusPro',
+    description: 'NexusPro is an all-in-one AI-based career helper platform built to guide users in every step of their professional journey. Whether you are a student, job seeker, or working professional, NexusPro helps you plan, learn, and grow with confidence.',
+    tags: ['MERN', 'Clerk (Auth)','Google Gemini AI', 'Vercel', 'RailWay', 'GCP'],
+    github: 'https://github.com/Niladri080/NexusPro',
+    live: 'https://nexus-pro-three.vercel.app/',
+    image: '/NexusPro.png',
     featured: true,
   },
   {
-    title: 'Cloud-Native E-commerce',
-    description: 'Full-stack e-commerce platform deployed on AWS with Docker and Kubernetes. Features payment integration, real-time inventory, and microservices architecture.',
-    tags: ['AWS', 'Docker', 'Kubernetes', 'MERN', 'Stripe'],
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'OpsFlow',
+    description: 'OpsFlow is a robust operations management platform designed to streamline and optimize business workflows. It offers real-time monitoring, analytics, and automation tools to enhance operational efficiency and decision-making.',
+    tags: ['Next.js', 'Supabase','GCP','Recharts', 'Docker'],
+    github: 'https://github.com/Niladri080/opsflow',
+    live: '/',
+    image: '/opsflow.png',
     featured: true,
   },
   {
-    title: 'DevOps Dashboard',
-    description: 'Monitoring and analytics dashboard for cloud infrastructure. Real-time metrics, alerting, and beautiful data visualizations.',
-    tags: ['React', 'D3.js', 'Node.js', 'PostgreSQL', 'Redis'],
-    github: 'https://github.com',
+    title: 'DocVerify',
+    description: 'A secure e-governance platform enabling citizens to upload documents, receive AI-driven quality analysis, and allowing admins to review, track, and manage submissions transparently.',
+    tags: ['MERN','Framer Motion','Google Gemini API','Cloudinary','Tesseract.js (OCR)', 'LLM integration','Helmet', 'Rate Limiting', 'Winston Logging', 'WebSockets'],
+    github: 'https://github.com/Niladri080/DocVerify',
+    image: '/DocVerify.png',
     featured: false,
   },
   {
-    title: 'ML Model Serving API',
-    description: 'Production-ready API for serving machine learning models with auto-scaling, request batching, and model versioning.',
-    tags: ['Python', 'FastAPI', 'Docker', 'TensorFlow', 'Redis'],
-    github: 'https://github.com',
+    title: 'bodyX',
+    description: 'Engineered an AI-powered fitness platform delivering personalized workout and diet plans, real-time posture tracking, automated video evaluation, and live training sessions with integrated premium payments.',
+    tags: ['MERN', 'Socket.io', 'Firebase' , 'Python', 'MediaPipe', 'OpenCV', 'WebRTC', 'AWS'],
+    github: 'https://github.com/Niladri080/bodyX',
+    image: '/bodyX.png',
     featured: false,
   },
   {
-    title: 'Social Media Analytics',
-    description: 'Analytics platform for tracking social media metrics across platforms with sentiment analysis and trend detection.',
-    tags: ['React', 'Node.js', 'MongoDB', 'NLP', 'Chart.js'],
-    github: 'https://github.com',
+    title: 'ShopFusion',
+    description: 'A Full Stack E-commerce Web Application with advanced search and recommendation features. Smooth User Experience and Responsive Design.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Express','SMTP','JWT'],
+    github: 'https://github.com/Niladri080/Product',
+    image: '/shopfusion.png',
     featured: false,
   },
+  {
+    title: 'QuickChat',
+    description: 'Built a real-time, event-driven platform with sub-100ms Socket.io messaging, optimized message persistence and read receipts, AI-powered thumbnail generation, and a fully responsive, cross-device user interface.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Express','Socket.io','JWT'],
+    github: 'https://github.com/Niladri080/Chat-App',
+    image: '/QuickChat.png',
+    featured: false,
+  },
+  {
+    title: 'Velvet Pour',
+    description: 'Designed a sleek, responsive landing page for Velvet Pour using React and GSAP, delivering smooth animations, refined visuals, and an engaging, high-performance user experience.',
+    tags: ['React', 'GSAP', 'Tailwind CSS'],
+    github: 'https://github.com/Niladri080/gsap-cocktails',
+    image: '/Velvet-Pour.png',
+    featured: false,
+  },
+  {
+    title: 'AuraLis',
+    description: 'AuraLis is a secure AI chatbot built with Clerk authentication and the Gemini API, delivering personalized, real-time conversations through a clean and responsive interface.',
+    tags: ['React', 'Framer Motion','Three.js', 'Tailwind CSS','Clerk','Google Gemini API'],
+    github: 'https://github.com/Niladri080/AuraLis',
+    image: '/Auralis.png',
+    featured: false,
+  }
 ];
-
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -79,9 +107,13 @@ export default function Projects() {
               className="glass-card overflow-hidden hover-lift group"
             >
               <div className="flex flex-col lg:flex-row">
-                {/* Project Visual - gradient placeholder */}
-                <div className="lg:w-2/5 h-48 lg:h-auto overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-primary/5 flex items-center justify-center">
-                  <div className="text-6xl opacity-20">💡</div>
+                {/* Project Visual */}
+                <div className="lg:w-2/5 h-48 lg:h-auto overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-primary/5">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 
                 {/* Project Content */}
@@ -130,21 +162,24 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Other Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        >
           {projects.filter(p => !p.featured).map((project, index) => (
             <div
               key={project.title}
               className="glass-card overflow-hidden hover-lift group"
             >
-              {/* Project Visual - gradient placeholder */}
-              <div className="h-40 overflow-hidden bg-gradient-to-br from-primary/15 via-accent/10 to-secondary/20 flex items-center justify-center">
-                <div className="text-5xl opacity-20">🚀</div>
+              {/* Project Visual */}
+              <div className="h-40 overflow-hidden bg-gradient-to-br from-primary/15 via-accent/10 to-secondary/20">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               
               <div className="p-6">

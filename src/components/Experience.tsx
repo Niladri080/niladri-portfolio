@@ -43,7 +43,7 @@ const experiences = [
 const achievements = [
   {
     icon: Code,
-    title: '400+ LeetCode',
+    title: '450+ LeetCode',
     description: 'Problems solved across all difficulty levels',
   },
   {
@@ -53,7 +53,7 @@ const achievements = [
   },
   {
     icon: Briefcase,
-    title: '10+ Projects',
+    title: '20+ Projects',
     description: 'Full-stack applications deployed in production',
   },
   {
