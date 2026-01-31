@@ -129,7 +129,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-secondary border border-border rounded-xl text-foreground 
                                placeholder:text-muted-foreground focus:outline-none focus:border-primary 
                                focus:ring-1 focus:ring-primary transition-all"
-                    placeholder="John Doe"
+                    placeholder="Enter your name"
                     required
                   />
                 </div>
@@ -146,7 +146,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-secondary border border-border rounded-xl text-foreground 
                                placeholder:text-muted-foreground focus:outline-none focus:border-primary 
                                focus:ring-1 focus:ring-primary transition-all"
-                    placeholder="john@example.com"
+                    placeholder="Enter your email"
                     required
                   />
                 </div>
@@ -163,7 +163,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-secondary border border-border rounded-xl text-foreground 
                                placeholder:text-muted-foreground focus:outline-none focus:border-primary 
                                focus:ring-1 focus:ring-primary transition-all resize-none"
-                    placeholder="Tell me about your project or just say hi!"
+                    placeholder="Enter your message"
                     required
                   />
                 </div>
